@@ -1,0 +1,105 @@
+/* src/components/Header.css */
+.header {
+  background-color: #282c34;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+/* Layout for logo, search, and user options */
+.header-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header-logo a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Centering SearchBar */
+.header-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Right-aligned User options */
+.header-user a {
+  color: white;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+.header-user a:hover {
+  text-decoration: underline;
+}
+
+/* Filter tags */
+.filter-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+/* Desktop view: Show filter tags below SearchBar */
+.filter-tags-desktop {
+  display: flex;
+}
+
+/* Hide filter tags menu button on large screens */
+.filter-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Hide filter menu dropdown by default */
+.filter-menu {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Filter tags become a dropdown menu */
+  .filter-tags-desktop {
+    display: none;  /* Hide the default filter tags below SearchBar */
+  }
+
+  .filter-menu-toggle {
+    display: inline;  /* Show menu toggle button */
+    margin-left: 1rem;
+  }
+
+  .filter-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+}
+

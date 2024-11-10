@@ -1,0 +1,85 @@
+/* Authentication.css */
+.authentication-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #e2dfdf;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px; /* Optional: add some top margin to separate from other content */
+}
+
+.authentication-container h3 {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.authentication-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.authentication-container form div {
+  margin-bottom: 15px;
+}
+
+.authentication-container label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.authentication-container input[type="username"],
+.authentication-container input[type="email"],
+.authentication-container input[type="password"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 100%; /* Make input fields take up the full width */
+  box-sizing: border-box; /* Ensure padding doesn't affect width calculation */
+}
+
+.authentication-container input[type="email"]:focus,
+.authentication-container input[type="password"]:focus {
+  border-color: #424243;
+}
+
+.authentication-container button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #3c3d3e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.authentication-container button:hover {
+  background-color: #343435;
+}
+
+.authentication-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.authentication-container div a {
+  text-align: center;
+  display: block;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #353636;
+  text-decoration: none;
+}
+
+.authentication-container div a:hover {
+  text-decoration: underline;
+}
+
+
