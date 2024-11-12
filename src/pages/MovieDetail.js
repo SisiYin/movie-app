@@ -5,6 +5,7 @@ import './MovieDetail.css';
 import axios from 'axios';
 import useUser from '../context/useUser';
 import ReviewList from '../components/ReviewList';
+import FavoriteButton from '../components/FavoriteBotton';
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -79,6 +80,7 @@ const MovieDetail = () => {
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
           <p><strong>Rating:</strong> {movie.vote_average} / 10 ({movie.vote_count} votes)</p>
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
+          <FavoriteButton movieId={movieId} />
           <p><strong>Production Companies:</strong></p>
           {/* <ul>
             {movie.production_companies.map(company => (

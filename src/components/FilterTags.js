@@ -6,13 +6,6 @@ const FilterTags = ({filters}) => {
     const [selectedFilter, setSelectedFilter] = useState(null); // Only one filter active at a time
     const navigate = useNavigate();
 
-    // Define filter names and their corresponding routes
-    // const filters = [
-    //   { label: 'Top Rated', path: 'toprated' },
-    //   { label: 'Up Coming', path: 'upcoming' },
-    //   { label: 'Most Popular', path: 'popular' }
-    // ];
-
     const handleFilterClick = (filter) => {
         const newFilter = selectedFilter === filter.label ? null : filter.label; // Toggle off if clicking the same filter
         setSelectedFilter(newFilter);

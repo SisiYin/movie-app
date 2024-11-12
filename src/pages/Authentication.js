@@ -46,7 +46,7 @@ export default function Authentication({authenticationMode}) {
     <div className="authentication-container">
       <h3>{authenticationMode === AuthenticationMode.Login ? 'Sign in' : 'Sign up'}</h3>
       <form onSubmit={handleSubmit}>
-      {authenticationMode === AuthenticationMode.Register && (
+      {/* {authenticationMode === AuthenticationMode.Register && (
           <div>
             <label>Username</label>
             <input
@@ -57,7 +57,7 @@ export default function Authentication({authenticationMode}) {
               required
             />
           </div>
-        )}
+        )} */}
         <div>
           <label>Email</label>
           <input type="email" value={user.email} onChange={e => setUser({...user,email:e.target.value})} />
