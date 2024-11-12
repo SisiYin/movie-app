@@ -39,14 +39,22 @@ export default function UserProvider({children}) {
       const token = response.data.token
       setUser(response.data)
       sessionStorage.setItem("user",JSON.stringify(response.data))
+       sessionStorage.setItem('token', token); 
     }catch(error) {
       setUser({email: '',password: ''})
       throw error
     }
   }
 
+  const logout = () => {
+    setUser({ email: '', password: '' }) // 清空当前用户信息
+    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('token') // 从 sessionStorage 中删除用户数据
+  }
+
+
   return (
-    <UserContext.Provider value={{user,setUser,signUp,signIn}}>
+    <UserContext.Provider value={{user,setUser,signUp,signIn,logout}}>
       {children}
     </UserContext.Provider>
   )
