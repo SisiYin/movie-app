@@ -6,6 +6,7 @@ export default function Profile() {
     <div>
       <h2>My Favorite Movies</h2>
       <FavoriteMovies />
+      <h2>My Comment</h2>
     </div>
   )
 }

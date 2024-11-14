@@ -4,8 +4,9 @@ import { useParams } from 'react-router-dom';
 import './MovieDetail.css';
 import axios from 'axios';
 import useUser from '../context/useUser';
-import ReviewList from '../components/ReviewList';
+import ReviewList from '../components/ReviewsList';
 import FavoriteButton from '../components/FavoriteBotton';
+import ReviewForm from '../components/ReviewForm';
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -35,24 +36,32 @@ const MovieDetail = () => {
     }
   };
 
-  const fetchReviews = async () => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NGM1MzlmMGEyZGNhODYzZDE1MjY1MmMwOGQyODkyNCIsIm5iZiI6MTczMDkzMzU5Ny4wNDU3NjksInN1YiI6IjY3MmIwY2VlMmY2NGViZThjOGU0ZGVmYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6pw2lCXSmmNW75P1F8EVCq-dMxYpyPwn2QcF3f7PV7Y', 
-      },
-    };
+  // const fetchReviews = async () => {
+  //   const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
+  //   const options = {
+  //     method: 'GET',
+  //     headers: {
+  //       accept: 'application/json',
+  //       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NGM1MzlmMGEyZGNhODYzZDE1MjY1MmMwOGQyODkyNCIsIm5iZiI6MTczMDkzMzU5Ny4wNDU3NjksInN1YiI6IjY3MmIwY2VlMmY2NGViZThjOGU0ZGVmYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6pw2lCXSmmNW75P1F8EVCq-dMxYpyPwn2QcF3f7PV7Y', 
+  //     },
+  //   };
 
+  //   try {
+  //     const response = await fetch(url, options);
+  //     const data = await response.json();
+  //     setReviews(data.results);
+  //   } catch (error) {
+  //     console.error('Failed to fetch movies:', error);
+  //   }
+  // };
+  const fetchReviews = async () => {
     try {
-      const response = await fetch(url, options);
-      const data = await response.json();
-      setReviews(data.results);
+      const response = await axios.get(`http://localhost:3001/movie/reviews/${movieId}`);
+      setReviews(response.data);
     } catch (error) {
-      console.error('Failed to fetch movies:', error);
+      console.error('Error fetching reviews:', error);
     }
-  };
+  }
 
   useEffect(() => {
     fetchMovies(movieId);
@@ -97,6 +106,7 @@ const MovieDetail = () => {
       </div>
       <div className="reviews-info">
         <h3>Reviews</h3>
+        <ReviewForm movieId={movieId} />
         <ReviewList reviews={reviews} />
       </div>
     </div>

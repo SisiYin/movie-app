@@ -1,0 +1,81 @@
+/* Styling the Review Form */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Textarea for the review */
+.review-form textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  margin-bottom: 12px;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus state for textarea */
+.review-form textarea:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Character count section */
+.review-form .useCount {
+  font-size: 14px;
+  color: #555;
+}
+
+.review-form .useCount,
+.review-form span {
+  margin-right: 5px;
+}
+
+/* Submit button */
+.review-form button[type="submit"] {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end; /* Align the button to the right */
+  margin-top: 10px;
+}
+
+/* Submit button hover effect */
+.review-form button[type="submit"]:hover {
+  background-color: #444445;
+}
+
+/* Optional: Button disabled state */
+.review-form button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .review-form {
+    padding: 15px;
+  }
+
+  .review-form textarea {
+    height: 120px;
+  }
+
+  .review-form button[type="submit"] {
+    width: 100%;
+  }
+}

@@ -36,6 +36,7 @@ export default function UserProvider({children}) {
     const headers = {headers:{'Content-Type':'application/json'}}
     try {
       const response = await axios.post(url + '/user/login',json,headers)
+      console.log("Login response data:", response.data);
       const token = response.data.token
       setUser(response.data)
       sessionStorage.setItem("user",JSON.stringify(response.data))
@@ -46,15 +47,15 @@ export default function UserProvider({children}) {
     }
   }
 
-  const logout = () => {
-    setUser({ email: '', password: '' }) // 清空当前用户信息
-    sessionStorage.removeItem('user')
-    sessionStorage.removeItem('token') // 从 sessionStorage 中删除用户数据
-  }
+  // const logout = () => {
+  //   setUser({ email: '', password: '' }) // 清空当前用户信息
+  //   sessionStorage.removeItem('user')
+  //   sessionStorage.removeItem('token') // 从 sessionStorage 中删除用户数据
+  // }
 
 
   return (
-    <UserContext.Provider value={{user,setUser,signUp,signIn,logout}}>
+    <UserContext.Provider value={{user,setUser,signUp,signIn}}>
       {children}
     </UserContext.Provider>
   )
