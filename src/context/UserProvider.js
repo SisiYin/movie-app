@@ -47,15 +47,15 @@ export default function UserProvider({children}) {
     }
   }
 
-  // const logout = () => {
-  //   setUser({ email: '', password: '' }) // 清空当前用户信息
-  //   sessionStorage.removeItem('user')
-  //   sessionStorage.removeItem('token') // 从 sessionStorage 中删除用户数据
-  // }
+  const logout = () => {
+    setUser({ email: '', password: '' }) // Clear
+    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('token') // 
+  }
 
 
   return (
-    <UserContext.Provider value={{user,setUser,signUp,signIn}}>
+    <UserContext.Provider value={{user,setUser,signUp,signIn,logout}}>
       {children}
     </UserContext.Provider>
   )
