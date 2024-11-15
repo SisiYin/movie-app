@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const url = process.env.REACT_APP_API_URL
 
-const ReviewForm = ({movieId}) => {
+const ReviewForm = ({movieId,addReview }) => {
   const { user } = useUser();
   const navigate = useNavigate();
   const [rating, setRating] = useState('');
@@ -30,15 +30,22 @@ const ReviewForm = ({movieId}) => {
           },
           body: JSON.stringify({
             movieId: movieId,
-            accountId: user?.id,
-            email: user?.email,
+            accountId: user.id,
+            email: user.email,
             rating: rating,
             comment: newComment,
+            time: new Date().toISOString(),
           }),
         });
         
         if (response.ok) {
           const data = await response.json();
+          addReview({
+            email: user.email,
+            rating: parseFloat(rating).toFixed(1),
+            comment: newComment,
+            time: new Date().toISOString(),
+          });
           console.log("Review added successfully", data);
           setRating('');
           setNewComment(''); // Clear the review input field after submission

@@ -30,7 +30,7 @@ const FavoriteButton = ({ movieId }) => {
   const handleFavoriteClick = async () => {
     //check login
     if (!user.id) {
-      alert("Please log in to add your favorite movie.");
+      alert("Please log in to add movies to your favorites.");
       return;
     }
     try {

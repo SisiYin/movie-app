@@ -1,4 +1,4 @@
-// src/screens/MovieDetail.js
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './MovieDetail.css';
@@ -63,9 +63,13 @@ const MovieDetail = () => {
     }
   }
 
+  const addReview = (newReview) => {
+    setReviews((prevReviews) => [newReview,...prevReviews]);
+  };
+
   useEffect(() => {
-    fetchMovies(movieId);
-    fetchReviews(movieId)
+    fetchMovies();
+    fetchReviews()
   }, [movieId]);
 
   return (
@@ -106,7 +110,7 @@ const MovieDetail = () => {
       </div>
       <div className="reviews-info">
         <h3>Reviews</h3>
-        <ReviewForm movieId={movieId} />
+        <ReviewForm movieId={movieId} addReview={addReview}/>
         <ReviewList reviews={reviews} />
       </div>
     </div>
