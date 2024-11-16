@@ -12,10 +12,6 @@ const MovieDetail = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState('');
   const [reviews,setReviews]=useState([]);
-  
-
-  
-
   // fetch data
   const fetchMovies = async () => {
     const url = `https://api.themoviedb.org/3/movie/${movieId}`;
