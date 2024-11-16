@@ -10,6 +10,11 @@ const FavoriteButton = ({ movieId }) => {
 
   // check favorite state:
   useEffect(() => {
+    if (!user.id) {
+      setIsFavorite(false); 
+      return;
+    }
+
     const fetchFavoriteStatus = async () => {
       try {
         const url = `https://api.themoviedb.org/3/movie/${movieId}/account_states?api_key=54c539f0a2dca863d152652c08d28924&session_id=df14e615c6e8a37fc3396968bdc758d8c1e051a0`;
