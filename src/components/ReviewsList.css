@@ -30,14 +30,14 @@
 }
 
 .review-rating {
-  background-color: #4caf50;
+  background-color: #8f918f;
   color: white;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9rem;
 }
 
-.review-content {
+.review-comment {
   margin: 10px 0;
   line-height: 1.5;
 }

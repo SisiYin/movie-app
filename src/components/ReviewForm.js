@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import useUser from '../context/useUser';
 import { useNavigate } from 'react-router-dom'; 
-//import './ReviewForm.css';
+import dayjs from 'dayjs'
+import './ReviewForm.css';
 
 const url = process.env.REACT_APP_API_URL
 
@@ -40,6 +41,7 @@ const ReviewForm = ({movieId,addReview }) => {
         
         if (response.ok) {
           const data = await response.json();
+          const formattedTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
           addReview({
             email: user.email,
             rating: parseFloat(rating).toFixed(1),
@@ -65,7 +67,7 @@ const ReviewForm = ({movieId,addReview }) => {
 
   return (
     <form onSubmit={handleAddReview} className='review-form'>
-      <h3>Rate and Review</h3>
+      <h3>Write a Review</h3>
       <label>
         Rating (0 - 5.0):
         <input

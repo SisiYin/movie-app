@@ -1,81 +1,88 @@
-/* Styling the Review Form */
+/* ReviewForm.css */
+
 .review-form {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 500px;
   margin: 20px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
 
-/* Textarea for the review */
+.review-form h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.review-form label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.review-form input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
 .review-form textarea {
   width: 100%;
-  height: 150px;
-  padding: 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: none;
-  margin-bottom: 12px;
-  transition: border-color 0.3s ease;
-}
-
-/* Focus state for textarea */
-.review-form textarea:focus {
-  border-color: #007BFF;
-  outline: none;
-}
-
-/* Character count section */
-.review-form .useCount {
-  font-size: 14px;
-  color: #555;
-}
-
-.review-form .useCount,
-.review-form span {
-  margin-right: 5px;
-}
-
-/* Submit button */
-.review-form button[type="submit"] {
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  align-self: flex-end; /* Align the button to the right */
+  height: 100px;
+  padding: 10px;
   margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: none;
+  box-sizing: border-box;
 }
 
-/* Submit button hover effect */
-.review-form button[type="submit"]:hover {
-  background-color: #444445;
+.review-form textarea::placeholder {
+  font-style: italic;
+  color: #aaa;
 }
 
-/* Optional: Button disabled state */
-.review-form button[type="submit"]:disabled {
-  background-color: #ccc;
+.review-form .useCount {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.review-form button {
+  background-color: #6f6f70;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.review-form button:hover {
+  background-color: #4d4e4e;
+}
+
+.review-form button:disabled {
+  background-color: #cccccc;
   cursor: not-allowed;
 }
 
-/* Responsive adjustments for mobile */
-@media (max-width: 768px) {
-  .review-form {
-    padding: 15px;
-  }
-
-  .review-form textarea {
-    height: 120px;
-  }
-
-  .review-form button[type="submit"] {
-    width: 100%;
-  }
+.review-form div {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

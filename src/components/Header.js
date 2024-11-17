@@ -1,8 +1,9 @@
 // src/components/Header.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import FilterTags from './FilterTags';
+import {UserContext} from '../context/UserContext.js'; 
 import './Header.css';
 
 const filters = [
@@ -15,9 +16,17 @@ const filters = [
 
 const Header = () => {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const { user, signOut } = useContext(UserContext);
+
 
   const toggleFilterMenu = () => {
     setIsFilterMenuOpen(!isFilterMenuOpen);
+  };
+
+  const navigate = useNavigate();
+  const handleSignOut = () => {
+    signOut();
+    navigate("/signin"); 
   };
 
   return (
@@ -35,8 +44,16 @@ const Header = () => {
 
         {/* Right side: User options */}
         <div className="header-user">
-          <Link to="/profile">Account</Link>
-          <Link to="/signin">Login</Link> | <Link to="/signup">Register</Link>
+        {user && user.email ? (
+            <>
+              <Link to="/profile">Account</Link>
+              <Link onClick={handleSignOut}>Sign Out</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signin">Login</Link> | <Link to="/signup">Register</Link>
+            </>
+          )}
         </div>
       </div>
 
