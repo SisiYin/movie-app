@@ -5,14 +5,14 @@ import './ReviewsList.css';
 export default function ReviewList({ reviews }) {
   return (
     <div className="review-list">
-      <h2>Reviews</h2>
+      {/* <h2>Reviews</h2> */}
       {reviews.length > 0 ? (
         reviews.map((review) => (
           <div key={review.id} className="review-item">
             <div className="review-header">
               <strong>{review.email}</strong>
               {review.rating && (
-                <span className="review-rating">Rating: {review.rating} / 5</span>
+                <span className="review-rating">Rating: {review.rating} / 5.0</span>
               )}
             </div>
             <p className="review-comment">{review.comment}</p>

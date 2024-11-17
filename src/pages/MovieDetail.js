@@ -10,7 +10,9 @@ import ReviewForm from '../components/ReviewForm';
 
 const MovieDetail = () => {
   const { movieId } = useParams();
+  const { user } = useUser();
   const [movie, setMovie] = useState('');
+  const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviews,setReviews]=useState([]);
   // fetch data
   const fetchMovies = async () => {
@@ -87,7 +89,6 @@ const MovieDetail = () => {
           {/* <p><strong>Genres:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p> */}
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
-          <p><strong>Rating:</strong> {movie.vote_average} / 10 ({movie.vote_count} votes)</p>
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
           <FavoriteButton movieId={movieId} />
           <p><strong>Production Companies:</strong></p>
@@ -104,9 +105,30 @@ const MovieDetail = () => {
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
         </div>
       </div>
-      <div className="reviews-info">
-        <h3>Reviews</h3>
-        <ReviewForm movieId={movieId} addReview={addReview}/>
+      <div className="reviews-section">
+        <div className="reviews-header">
+          <h2>Reviews</h2>
+          <button className="add-review-btn" onClick={() => user.id? setShowReviewForm(true) : alert("Please log in to add a review.")}> Add Review </button>
+        </div>
+
+        {showReviewForm && (
+        <div className="modal">
+          <div className="modal-content">
+            <button
+              className="close-modal"
+              onClick={() => setShowReviewForm(false)}
+            >
+              ×
+            </button>
+            <ReviewForm
+              movieId={movieId}
+              addReview={addReview}
+              closeForm={() => setShowReviewForm(false)}
+            />
+          </div>
+        </div>
+      )}
+
         <ReviewList reviews={reviews} />
       </div>
     </div>
