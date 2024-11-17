@@ -1,12 +1,12 @@
-/* src/components/ReviewList.css */
 
 .review-list {
-  padding: 20px;
-  background-color: #f9f9f9;
+  max-width: 1000px; 
+  margin: auto; 
+  padding: 20px; 
+  background-color: #f9f9f9; 
   border-radius: 8px;
-  max-width: 800px;
-  margin: auto;
   color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .review-list h2 {
