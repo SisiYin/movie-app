@@ -12,7 +12,7 @@ export default function ReviewList({ reviews }) {
             <div className="review-header">
               <strong>{review.email}</strong>
               {review.rating && (
-                <span className="review-rating">Rating: {review.rating} / 5.0</span>
+                <span className="review-rating">  {review.rating} / 5.0</span>
               )}
             </div>
             <p className="review-comment">{review.comment}</p>
@@ -24,15 +24,6 @@ export default function ReviewList({ reviews }) {
             </div>
           </div>
         ))
-        //   <ul>
-        //     <li key={review.id}>
-        //       <strong>Email:</strong> {review.email} <br />
-        //       <strong>Rating:</strong> {review.rating} <br />
-        //       <strong>Comment:</strong> {review.comment} <br />
-        //       <strong>Time:</strong> {new Date(review.time).toLocaleString()}
-        //     </li>
-        //   </ul>
-        // ))
       ) : (
         <p>No reviews available.</p>
       )}

@@ -1,4 +1,4 @@
-import { insertReview, selectAllReviews, selectReviewsByMovie } from '../models/Movie.js'
+import { insertReview, selectAllReviews, selectReviewsByMovie} from '../models/Movie.js'
 
 const postNewReview = async (req, res) => {
   const { movieId, accountId, email, rating, comment } = req.body;
@@ -23,6 +23,17 @@ const getReviewsByMovie = async (req, res, next) => {
     next(error);
   }
 };
+
+// const getReviewsByUser = async (req, res, next) => {
+//   const { accountId } = req.params;
+//   try {
+//     const result = await selectUserByUser(accountId);
+//     res.status(200).json(result.rows);  
+//   } catch (error) {
+//     console.error('Error fetching reviews:', error);
+//     next(error);
+//   }
+// };
 
 const getAllReviews = async (req, res, next) => {
   try {

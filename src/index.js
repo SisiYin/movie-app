@@ -92,7 +92,7 @@ const router = createBrowserRouter([
             element: <GroupDetails />,
           },
           {
-            path: "/profile",
+            path: "/user/:id/profile",
             element: <Profile />,
           },
         ],

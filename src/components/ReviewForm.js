@@ -5,7 +5,7 @@ import './ReviewForm.css';
 
 const url = process.env.REACT_APP_API_URL
 
-const ReviewForm = ({movieId,addReview }) => {
+const ReviewForm = ({movieId,addReview,closeForm }) => {
   const { user } = useUser();
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
@@ -15,15 +15,15 @@ const ReviewForm = ({movieId,addReview }) => {
   const handleAddReview = async(e) => {
     e.preventDefault();
 
-    if (!user.id) {
-      alert("Please log in to add a review.");
-      navigate('/signin'); // Redirect to login page if user is not logged in
-      return;
-    }
+    // if (!user.id) {
+    //   alert("Please log in to add a review.");
+    //   navigate('/signin'); // Redirect to login page if user is not logged in
+    //   return;
+    // }
 
-    if (rating || newComment) {
+    if (rating && newComment) {
       try {
-        const response = await fetch(url + "/movie/reviews", {
+        const response = await fetch(url + "/movie/newreview", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -49,6 +49,7 @@ const ReviewForm = ({movieId,addReview }) => {
           console.log("Review added successfully", data);
           setRating('');
           setNewComment(''); // Clear the review input field after submission
+          closeForm();
         } else {
           const errorData = await response.json();
           alert(errorData.message || 'Failed to add review');

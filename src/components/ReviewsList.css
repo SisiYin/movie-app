@@ -37,6 +37,13 @@
   font-size: 0.9rem;
 }
 
+.review-rating:before {
+  content: "★";
+  font-size: 1.2rem;
+  color: gold;
+  margin-right: 4px;
+}
+
 .review-comment {
   margin: 10px 0;
   line-height: 1.5;

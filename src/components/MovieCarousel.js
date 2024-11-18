@@ -1,6 +1,6 @@
 // src/components/MovieCarousel.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './MovieCarousel.css';
 
 const MovieCarousel = ({ movies }) => {
@@ -49,6 +49,7 @@ const MovieCarousel = ({ movies }) => {
               onClick={() => setFeaturedMovie(index)}
             />
           ))}
+          <Link to="/showtimes"> &gt;&gt; </Link>
         </div>
       </div>
 

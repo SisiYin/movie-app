@@ -46,7 +46,7 @@ const Header = () => {
         <div className="header-user">
         {user && user.email ? (
             <>
-              <Link to="/profile">Account</Link>
+              <Link to={`/user/${user.id}/profile`}>Account</Link>
               <Link onClick={handleSignOut}>Sign Out</Link>
             </>
           ) : (
