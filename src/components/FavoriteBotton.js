@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useUser from '../context/useUser';
 import './FavoriteButton.css';
 
+const url = process.env.REACT_APP_API_URL
 
 const FavoriteButton = ({ movieId }) => {
   const { user } = useUser();
@@ -16,11 +17,14 @@ const FavoriteButton = ({ movieId }) => {
 
     const fetchFavoriteStatus = async () => {
       try {
-        const url = `https://api.themoviedb.org/3/movie/${movieId}/account_states?api_key=54c539f0a2dca863d152652c08d28924&session_id=df14e615c6e8a37fc3396968bdc758d8c1e051a0`;
-        const response = await fetch(url);
+        // const url = `https://api.themoviedb.org/3/movie/${movieId}/account_states?api_key=54c539f0a2dca863d152652c08d28924&session_id=df14e615c6e8a37fc3396968bdc758d8c1e051a0`;
+        // const response = await fetch(url);
+
+        //from backend
+        const response = await fetch(`${url}/movie/favorites/${user.id}/${movieId}`);
         const data = await response.json();
-        
-        if (data.favorite) {
+        console.log(data)
+        if (data.isFavorite) {
           setIsFavorite(true);
         }
       } catch (error) {
@@ -29,7 +33,7 @@ const FavoriteButton = ({ movieId }) => {
     };
 
     fetchFavoriteStatus();
-  }, [movieId]);
+  }, [movieId,user.id]);
 
   const handleFavoriteClick = async () => {
     //check login
@@ -38,21 +42,34 @@ const FavoriteButton = ({ movieId }) => {
       return;
     }
     try {
-      const url = 'https://api.themoviedb.org/3/account/21613810/favorite?api_key=54c539f0a2dca863d152652c08d28924&session_id=df14e615c6e8a37fc3396968bdc758d8c1e051a0';
-      const options = {
-        method: 'POST',
+      // const url = 'https://api.themoviedb.org/3/account/21613810/favorite?api_key=54c539f0a2dca863d152652c08d28924&session_id=df14e615c6e8a37fc3396968bdc758d8c1e051a0';
+      // const options = {
+      //   method: 'POST',
+      //   headers: {
+      //     accept: 'application/json',
+      //     'content-type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     media_type: 'movie',
+      //     media_id: movieId,
+      //     favorite: !isFavorite
+      //   }),
+      // };
+
+      // const response = await fetch(url, options);
+
+      //from databese
+      const response = await fetch(url + "/movie/favorites", {
+        method: "POST",
         headers: {
-          accept: 'application/json',
-          'content-type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          media_type: 'movie',
-          media_id: movieId,
-          favorite: !isFavorite
+          accountId: user.id,
+          movieId: movieId,
+          favorite: !isFavorite,
         }),
-      };
-
-      const response = await fetch(url, options);
+      });
       const data = await response.json();
 
       if (data.success) {

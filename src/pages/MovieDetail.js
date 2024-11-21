@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import './MovieDetail.css';
 import axios from 'axios';
 import useUser from '../context/useUser';
-import ReviewList from '../components/ReviewsList';
+import ReviewsList from '../components/ReviewsList';
+import star from "../assets/star.svg"
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
 
@@ -14,6 +15,7 @@ const MovieDetail = () => {
   const [movie, setMovie] = useState('');
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviews,setReviews]=useState([]);
+  const [averageRating,setAverageRating] = useState('')
   // fetch data
   const fetchMovies = async () => {
     const url = `https://api.themoviedb.org/3/movie/${movieId}`;
@@ -61,19 +63,30 @@ const MovieDetail = () => {
     }
   }
 
+  const fetchAverageRating = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/movie/${movieId}/rating`);
+      setAverageRating(response.data[0].averagerating);
+      console.log(response.data[0].averagerating)
+    } catch (error) {
+      console.error('Error fetching rating:', error);
+    }
+  }
+
   const addReview = (newReview) => {
     setReviews((prevReviews) => [newReview,...prevReviews]);
   };
 
   useEffect(() => {
     fetchMovies();
-    fetchReviews()
+    fetchReviews();
+    fetchAverageRating();
   }, [movieId]);
 
   return (
     <div className="movie-detail">
       <div className="movie-backdrop" 
-      // style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
+      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
       >
         <div className="movie-title">
           <h1>{movie.title}</h1>
@@ -89,8 +102,10 @@ const MovieDetail = () => {
           {/* <p><strong>Genres:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p> */}
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
+          <p><img src={star} className='starIcon'></img>{averageRating} / 5.0(votes)</p>
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
           <FavoriteButton movieId={movieId} />
+          <span className="average-rating">  {averageRating} / 5.0</span>
           <p><strong>Production Companies:</strong></p>
           {/* <ul>
             {movie.production_companies.map(company => (
@@ -129,7 +144,7 @@ const MovieDetail = () => {
         </div>
       )}
 
-        <ReviewList reviews={reviews} />
+        <ReviewsList reviews={reviews} />
       </div>
     </div>
   );

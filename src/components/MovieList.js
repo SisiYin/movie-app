@@ -19,9 +19,9 @@ const MovieList = ({ movies }) => {
           >
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} className="movielist-image" />
             <h2>{movie.original_title}</h2>
-            <p><strong>Average Vote:</strong> {movie.vote_average}</p>
-            <p><strong>Release Date:</strong> {movie.release_date}</p>
-            <p><strong>Popularity:</strong> {movie.popularity}</p>
+            {/* <p><strong>Average Vote:</strong> {movie.vote_average}</p> */}
+            {/* <p><strong>Release Date:</strong> {movie.release_date}</p>
+            <p><strong>Popularity:</strong> {movie.popularity}</p> */}
           </div>
         ))
       ) : (

@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import './ReviewsList.css';
 
-export default function ReviewList({ reviews }) {
+export default function ReviewsList({ reviews }) {
   return (
     <div className="review-list">
       {/* <h2>Reviews</h2> */}
