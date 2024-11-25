@@ -1,0 +1,41 @@
+/* 定义开关容器 */
+.toggle-switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* 开关的滑块 */
+.toggle-switch .slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* 开关开启状态时的样式 */
+.toggle-switch.on {
+  background-color: #b9c2e7; /* 绿色表示开启状态 */
+}
+
+.toggle-switch.on .slider {
+  transform: translateX(30px); /* 滑块移动到右边 */
+}
+
+/* 开关关闭状态时的样式 */
+.toggle-switch.off {
+  background-color: #ccc; /* 灰色表示关闭状态 */
+}
+
+.toggle-switch.off .slider {
+  transform: translateX(0px); /* 滑块保持在左边 */
+}
+
