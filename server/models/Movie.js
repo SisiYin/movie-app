@@ -13,10 +13,6 @@ export const selectAllReviews = async () => {
   return await pool.query('select * from reviews')
 }
 
-export const selectReviewsByUser = async (account_id) => {
-  return await pool.query('select * from reviews where account_id=$1',[account_id])
-}
-
 export const selectAverageRatingByMovie = async (movie_id) => {
   return await pool.query('select movie_id, ROUND(AVG(rating),1) as averagerating from reviews where movie_id=$1 group by movie_id',[movie_id])
 }
