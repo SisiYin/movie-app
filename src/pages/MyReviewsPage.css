@@ -1,0 +1,91 @@
+/* MyReviewsPage.css */
+.reviews-page {
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+
+/* 
+.reviews-page .reviews-list {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.reviews-page .review-item {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-page .movie-poster {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.reviews-page .review-info {
+  flex-grow: 1;
+}
+
+.reviews-page .movie-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.reviews-page .movie-details {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.reviews-page .movie-details span {
+  margin-right: 15px;
+}
+
+.reviews-page .review-text {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.reviews-page .review-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.reviews-page .rating {
+  color: #ffbb00;
+}
+
+.reviews-page .time {
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .reviews-page .review-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .reviews-page .movie-poster {
+    margin-bottom: 15px;
+  }
+
+  .reviews-page .review-info {
+    text-align: center;
+  }
+} */
+

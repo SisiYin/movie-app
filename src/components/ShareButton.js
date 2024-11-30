@@ -6,6 +6,8 @@ console.log(basicUrl)
 
 const ShareButton = ({ isPublic, shareUrl, onGenerateUrl }) => {
   const [showOptions, setShowOptions] = useState(false);
+  const shareLink=`${basicUrl}/share/${shareUrl}`
+  console.log(shareLink)
 
   const handleGenerateUrl = () => {
     if (onGenerateUrl) {
@@ -15,7 +17,7 @@ const ShareButton = ({ isPublic, shareUrl, onGenerateUrl }) => {
 
   const handleCopyLink = () => {
     if (shareUrl) {
-      navigator.clipboard.writeText(`${basicUrl}/share/${shareUrl}`);
+      navigator.clipboard.writeText(shareLink);
       alert('Link copied to clipboard!');
     }
   };
@@ -44,7 +46,7 @@ const ShareButton = ({ isPublic, shareUrl, onGenerateUrl }) => {
       {showOptions && shareUrl && (
         <div className="share-options">
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
             className="share-option"
@@ -52,7 +54,7 @@ const ShareButton = ({ isPublic, shareUrl, onGenerateUrl }) => {
             <i className="fa fa-facebook"></i> Facebook
           </a>
           <a
-            href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=Check%20this%20out!`}
+            href={`https://twitter.com/intent/tweet?url=${shareLink}&text=Check%20this%20out!`}
             target="_blank"
             rel="noopener noreferrer"
             className="share-option"
@@ -60,13 +62,13 @@ const ShareButton = ({ isPublic, shareUrl, onGenerateUrl }) => {
             <i className="fa fa-twitter"></i> Twitter
           </a>
           <a
-            href={`mailto:?subject=Check%20this%20out&body=${shareUrl}`}
+            href={`mailto:?subject=Check%20this%20out&body=${shareLink}`}
             className="share-option"
           >
             <i className="fa fa-envelope"></i> Email
           </a>
           <button className="share-option" onClick={handleCopyLink}>
-            <i className="fa fa-link"></i> Copy link
+            <i className="fa fa-link"></i> Copy
           </button>
         </div>
       )}

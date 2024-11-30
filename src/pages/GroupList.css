@@ -1,0 +1,116 @@
+/* 页面整体容器 */
+.group-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+
+/* 搜索框样式 */
+.group-page-container .search-input {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.group-list-header {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.group-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* 创建按钮样式 */
+.create-button {
+  padding: 10px 20px;
+  background-color: lightgray;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-button:hover {
+  background-color: lightgray;
+}
+
+/* 新小组创建输入框 */
+.create-group-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.group-page-container .submit-button {
+  padding: 10px 20px;
+  background-color: gray;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.group-page-container .submit-button:hover {
+  background-color: #45a049;
+}
+
+/* 小组列表容器 */
+.group-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* 小组卡片 */
+.group-card {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.group-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.group-card p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.group-card button {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: white;
+  background-color: #a2a8bd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.group-card button:hover {
+  background-color: #656665;
+}
+

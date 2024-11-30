@@ -10,7 +10,7 @@ const ReviewForm = ({movieId,addReview,closeForm }) => {
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const [newComment, setNewComment] = useState(''); 
-  const maxLength = 255; 
+  const maxLength = 500; 
 
   const handleAddReview = async(e) => {
     e.preventDefault();

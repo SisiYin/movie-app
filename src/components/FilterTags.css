@@ -1,4 +1,4 @@
-.filter-tags {
+/* .filter-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -9,6 +9,29 @@
 .filter-button {
   padding: 5px 10px;
   background-color: #f1f1f1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.filter-button.active {
+  background-color: #333;
+  color: #fff;
+} */
+
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+  justify-content: center;
+  background-color: lightgray;
+}
+
+.filter-button {
+  padding: 5px 10px;
+  background-color: lightgray;;
   border: none;
   border-radius: 4px;
   cursor: pointer;

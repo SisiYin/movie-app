@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useUser from '../context/useUser';
-import axios from 'axios';
-//import MovieList from './MovieList';
-import MyFavoritesList from './MyFavoritesList';
+import MovieList from '../components/MovieList';
 
 const url = process.env.REACT_APP_API_URL
 
@@ -40,30 +38,15 @@ const FavoriteMovies= () => {
       const movieIds = favoriteData.map((item) => item.movie_id);
       console.log(movieIds)
     //get favorite movie data from TMDB
-    const moviePromises = movieIds.map(async(movieId) =>{
-      try {
-        // 获取电影详情
-        const movieDetails = await axios.get(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=54c539f0a2dca863d152652c08d28924`
-        );
+    const moviePromises = movieIds.map((movieId) =>
+      fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=54c539f0a2dca863d152652c08d28924`)
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error(`Failed to fetch details for movie ID ${movieId}:`, error);
+          return null; // Return null to filter out failed fetches
+        })
+    );
 
-        // 获取电影的平均评分
-        const averageRatingResponse = await axios.get(
-          `${url}/movie/${movieId}/rating`
-        );
-        const averageRating =
-          averageRatingResponse.data[0]?.averagerating || "N/A";
-
-        // 返回整合后的电影数据
-        return {
-          ...movieDetails.data,
-          averageRating,
-        };
-      } catch (error) {
-        console.error(`Error fetching data for movie ID ${movieId}:`, error);
-        return null;
-      }
-    });
     const data = await Promise.all(moviePromises);
     setMovies(data.filter((movie) => movie !== null));
     console.log(movies)
@@ -78,10 +61,9 @@ const FavoriteMovies= () => {
   },[user.id]);
 
   return (
-    <div >
+    <div>
     
-      {/* <MovieList movies={movies} /> */}
-      <MyFavoritesList movies={movies} />
+      <MovieList movies={movies} />
     </div>
   );
 };

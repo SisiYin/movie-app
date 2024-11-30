@@ -1,0 +1,202 @@
+/* 基本样式 */
+
+.my-favorites-list {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9; 
+  color: #333;
+  margin-top: 20px;
+  max-width: 1000px; /* 限制整个评论列表的宽度 */
+  margin-left: auto; /* 居中对齐 */
+  margin-right: auto; /* 居中对齐 */
+}
+
+/* 默认情况下：水平排列海报和基本信息，评论在下方 */
+.my-favorites-list .movie-item {
+  display: flex;
+  flex-direction: column; /* 默认垂直排列，使得评论信息位于海报下方 */
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 20px;
+}
+
+/* 去掉最后一个条目的边框 */
+.my-favorites-list .movie-item:last-child {
+  border-bottom: none;
+}
+
+/* 包含海报和基本信息的容器 */
+.my-favorites-list .movie-info-container {
+  display: flex;
+  flex-direction: row; /* 小屏幕时海报和基本信息水平排列 */
+  align-items: flex-start; /* 顶部对齐 */
+  gap: 15px;
+}
+
+/* 海报样式 */
+.my-favorites-list .movie-poster {
+  width: 40%;
+  max-width: 80px; /* 限制图片最大宽度 */
+  height: auto; /* 保持图片比例 */
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 评论信息样式 */
+.my-favorites-list .movie-info {
+  flex: 1; /* 评论信息部分占用剩余空间 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 电影标题 */
+.my-favorites-list .movie-title {
+  font-size: 1rem;
+  margin: 0;
+  color: #333; /* 标题颜色为普通文本色 */
+  font-weight: bold;
+}
+
+.my-favorites-list .release-runtime {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 10px 0;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* 电影详情部分 */
+.my-favorites-list .movie-details {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.my-favorites-list .movie-details .avr-rating{
+  font-weight: bold;
+}
+
+/* 评论文字 */
+.my-favorites-list .moview-overview {
+  margin: 10px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* 评论底部：*/
+.my-favorites-list .movie-footer {
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* 详情链接的样式 */
+.my-favorites-list .movie-footer .details-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.my-favorites-list .movie-footer .details-link:hover {
+  text-decoration: underline;
+}
+
+
+
+/* 搜索和排序容器 */
+.my-favorites-list .filter-sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* 排序选项样式 */
+.my-favorites-list .sort-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.my-favorites-list .sort-options label {
+  font-weight: bold;
+}
+
+.my-favorites-list .sort-options select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.my-favorites-list .sort-order-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.my-favorites-list .sort-order-button:hover {
+  background-color: #0056b3;
+}
+
+/* 搜索框样式 */
+.my-favorites-list .search-input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  flex: 0.3; /* 控制搜索框的宽度 */
+}
+
+/* 导演和演员信息
+.my-review-list .review-footer .cast-info {
+  margin-top: 5px;
+} */
+
+/* 媒体查询：中等到大屏幕 */
+@media (min-width: 768px) {
+  .my-favorites-list .movie-item {
+    flex-direction: column; /* 电影和评论保持垂直排列 */
+  }
+
+  .my-favorites-list .movie-info-container {
+    flex-direction: row; /* 中到大屏幕保持海报和详情的水平排列 */
+    gap: 20px;
+  }
+
+  .my-favorites-list .movie-poster {
+    max-width: 120px; /* 中到大屏幕时图片大小调整 */
+  }
+
+  .my-favorites-list .movie-info {
+    padding-left: 40px; /* 给评论信息和海报之间留出空间 */
+  }
+
+  .my-favorites-list .movie-title {
+    font-size: 1.8rem; /* 中大屏幕电影标题字体增大 */
+  }
+
+  .my-favorites-list .movie-details {
+    font-size: 1.2rem; /* 中大屏幕上电影详情字体增大 */
+  }
+
+  .my-favorites-list .release-runtime {
+    font-size: 1.2rem; /* 中大屏幕 release time 字体增大 */
+  }
+
+  .my-favorites-list .movie-overview {
+    font-size: 1.2rem; /* 中大屏幕上评论文字字体增大，提高可读性 */
+  }
+
+  .my-favorites-list .movie-footer .details-link {
+    font-size: 1rem; /* 中大屏幕上 details 链接字体增大 */
+  }
+  
+}

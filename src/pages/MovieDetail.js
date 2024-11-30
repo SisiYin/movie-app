@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import './MovieDetail.css';
 import axios from 'axios';
 import useUser from '../context/useUser';
-import ReviewsList from '../components/ReviewsList';
+import MovieReviewsList from '../components/MovieReviewsList';
 import star from "../assets/star.svg"
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
@@ -144,7 +144,7 @@ const MovieDetail = () => {
         </div>
       )}
 
-        <ReviewsList reviews={reviews} />
+        <MovieReviewsList reviews={reviews} />
       </div>
     </div>
   );

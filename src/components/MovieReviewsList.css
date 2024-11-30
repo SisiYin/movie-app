@@ -1,5 +1,5 @@
 
-.review-list {
+.movie-review-list {
   max-width: 1000px; 
   margin: auto; 
   padding: 20px; 
@@ -9,19 +9,19 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
-.review-list h2 {
+.movie-review-list h2 {
   margin-bottom: 20px;
   font-size: 1.8rem;
   color: #222;
 }
 
-.review-item {
+.movie-review-list .review-item {
   padding: 15px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 15px;
 }
 
-.review-header {
+.movie-review-list .review-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,43 +29,67 @@
   color: #555;
 }
 
-.review-rating {
-  background-color: #8f918f;
-  color: white;
+.movie-review-list .review-rating {
+  color: darkgray;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9rem;
 }
 
-.review-rating:before {
+.movie-review-list .review-rating:before {
   content: "★";
   font-size: 1.2rem;
   color: gold;
   margin-right: 4px;
 }
 
-.review-comment {
+.movie-review-list .review-comment {
   margin: 10px 0;
   line-height: 1.5;
 }
 
-.review-footer {
+.movie-review-list .review-footer {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
   color: #777;
 }
 
-.review-footer a {
+.movie-review-list .review-footer a {
   color: #007bff;
   text-decoration: none;
 }
 
-.review-footer a:hover {
+.movie-review-list .review-footer a:hover {
   text-decoration: underline;
 }
 
-.review-date {
+.movie-review-list .review-date {
   font-style: italic;
 }
 
+@media (max-width: 480px) {
+  .movie-review-list {
+    padding: 10px;
+  }
+
+  .movie-review-list h2 {
+    font-size: 1.5rem;
+  }
+
+  .movie-review-list .review-item {
+    padding: 10px;
+  }
+
+  .movie-review-list .review-header {
+    font-size: 0.9rem;
+  }
+
+  .movie-review-list .review-comment {
+    font-size: 0.9rem;
+  }
+
+  .movie-review-list .review-footer {
+    font-size: 0.8rem;
+  }
+}
