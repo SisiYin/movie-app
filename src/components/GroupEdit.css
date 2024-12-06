@@ -1,0 +1,73 @@
+.group-edit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.group-edit-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.group-edit input, .group-edit textarea {
+  width: 90%; 
+  padding: 10px;
+  
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+.group-edit .edit-textarea {
+  height: 100px;
+  resize: vertical; /* 允许垂直调整大小 */
+}
+
+.group-edit button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.group-edit .save-button {
+  background-color: #4CAF50; /* 绿色保存按钮 */
+  color: white;
+}
+
+.group-edit .cancel-button {
+  background-color: #ccc; /* 灰色取消按钮 */
+  color: black;
+}
+
+.group-image-container {
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.group-edit-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  transition: transform 0.2s ease-in-out;
+}
+
+.group-edit-image:hover {
+  transform: scale(1.05);
+}
+

@@ -15,6 +15,7 @@ const GroupList = () => {
   //const [activeTab, setActiveTab] = useState('all'); 
 
   const navigate = useNavigate();
+  console.log(user)
 
   useEffect(() => {
     fetchGroups();
@@ -28,6 +29,18 @@ const GroupList = () => {
       setGroups(response.data);
     } catch (error) {
       console.error('Error fetching groups:', error);
+    }
+  };
+
+  const fetchGroupMembers = async (groupId) => {
+    try {
+      const response = await axios.get(`${url}/group/${groupId}`);
+      console.log(response.data)
+      return response.data.members; 
+    } catch (error) {
+      console.error('Error fetching group details:', error);
+      alert('Failed to fetch group details.');
+      return [];
     }
   };
 
@@ -59,8 +72,17 @@ const GroupList = () => {
     group.group_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleViewGroup = async (groupId) => {
-    navigate(`/groups/${groupId}`)
+  const handleViewGroup = async (group) => {
+    const groupId=group.group_id
+    const groupMembers = await fetchGroupMembers(groupId);
+    const isMember = groupMembers.some(member => member.id === user.id);
+    const isOwner = group.owner_id === user.id
+
+    if (isMember||isOwner) {
+      navigate(`/groups/${groupId}`);
+    } else {
+      alert('Only group members can view this group.');
+    }
   }
 
   return (
@@ -95,7 +117,7 @@ const GroupList = () => {
         </select>
       </div> */}
 
-      {/* 创建新小组输入框 */}
+      {/* create new group input */}
       {showCreateInput && (
         <div className="create-group-container">
           <input
@@ -111,11 +133,11 @@ const GroupList = () => {
         </div>
       )}
 
-      {/* 小组列表 */}
+      {/* groups list*/}
       <div className="group-list">
         {filteredGroups.map((group) => (
           <div className="group-card" key={group.group_id}>
-            <h3 onClick={() => handleViewGroup(group.group_id)}>{group.group_name}</h3>
+            <h3 onClick={() => handleViewGroup(group)}>{group.group_name}</h3>
             <p>Created by: {group.owner_name}</p>
             <button onClick={() => handleJoinRequest(group.group_id)}>Join</button>
           </div>
@@ -127,30 +149,5 @@ const GroupList = () => {
 
 export default GroupList;
 
-// import React, { useState } from 'react';
-// import CreateGroupModal from '../components/CreateGroupModal';
 
-// const ParentComponent = () => {
-//   const [showModal, setShowModal] = useState(false);
-//   const [groups, setGroups] = useState([]);
-
-//   const handleGroupCreated = (newGroup) => {
-//     setGroups([...groups, newGroup]); // 更新群组列表
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={() => setShowModal(true)}>Create Group</button>
-//       {showModal && (
-//         <CreateGroupModal
-//           onClose={() => setShowModal(false)}
-//           onGroupCreated={handleGroupCreated}
-//         />
-//       )}
-//       {/* 这里可以显示群组列表 */}
-//     </div>
-//   );
-// };
-
-// export default ParentComponent;
 

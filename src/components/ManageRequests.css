@@ -1,0 +1,106 @@
+.floating-button {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #808080; /* 中灰色 */
+  color: #fff;
+  border-radius: 20px 0 0 20px; /* 半圆形设计 */
+  width: 50px; 
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease; /* 鼠标悬停时的背景渐变效果 */
+  font-size: 1.5em; /* 箭头大小 */
+}
+
+.floating-button:hover {
+  background-color: #696969;
+}
+
+.floating-button .arrow {
+  font-size: 1.2em; 
+  transform: rotate(180deg); 
+}
+
+.badge {
+  position: absolute;
+  top: 5%; 
+  left: 5%; 
+  background-color: red; 
+  color: white; 
+  border-radius: 50%; 
+  padding: 2px 8px; 
+  font-size: 0.8em;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.manage-requests-drawer {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #f9f9f9;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.manage-requests-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #ddd;
+  border-bottom: 1px solid #ccc;
+}
+
+.drawer-header button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.request-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.approve-btn,
+.reject-btn {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.approve-btn {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+}
+
+.reject-btn {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+}
+
+.error {
+  color: red;
+  padding: 10px;
+}

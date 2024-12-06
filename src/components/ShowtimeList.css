@@ -1,0 +1,25 @@
+/* In GroupPage.css or your general CSS file */
+
+/* For showtimes container */
+.showtime-content-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling for each showtime */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* Description styling */
+.content-description {
+  font-size: 1.1em;
+  color: #333;
+}

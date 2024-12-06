@@ -1,0 +1,58 @@
+.group-selection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.group-selection .modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 100%;
+  text-align: center;
+}
+
+.group-selection .modal-actions {
+  margin-top: 20px;
+}
+
+.group-selection button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.group-selection button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.group-selection button.add-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.group-selection button.cancel-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.group-selection .description-input {
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+}
+

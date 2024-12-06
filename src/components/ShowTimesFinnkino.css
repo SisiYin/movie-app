@@ -1,0 +1,96 @@
+.Filters{
+    display: flex;
+    justify-content: center;
+    
+}
+.Maintext{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #232323;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.Filter{
+    display: flex;
+    font-size: large;
+    padding: 5px;
+    border-radius: 8px;
+    margin: 5px;
+    width: 25%;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+.Filter-select{
+    display: flex;
+    font-size: large;
+    padding: 5px;
+    border-radius: 8px;
+    width: 25%;
+    margin: 5px;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+.Filter-select:hover{
+    cursor: pointer;
+}
+
+.Schedule{
+
+    align-items: center;
+    justify-content: center;
+}
+
+.Movie{
+    display: inline-block;
+    font-size: large;
+    border: 1.5px black solid;
+    background-color: white;
+    margin: 5px;
+    border-radius: 8px;
+    text-align: center;
+    width: 70%;
+    padding: 5px;
+}
+
+.Table{
+    display: flex;
+    justify-content: center;
+    border: 1.5px black solid;
+    background-color: #232323;
+    border-radius: 8px;
+    width: 99%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-bottom: 1%;
+}
+
+.Table-content{
+    font-size: large;
+    color: white;
+    display: inline-block;
+    width: 33%;
+    justify-content: center;
+    text-align: center;
+}
+
+.MovieTable{
+    display: flex;
+    justify-content: center;
+}
+
+.MovieTable.selected {
+    background-color: #709170; 
+    border: 2px solid #1d451f; 
+  }
+
+.Background{
+    background-color: rgb(232, 232, 232);
+}

@@ -1,0 +1,66 @@
+
+.my-group-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* search bar */
+.my-group-container .search-input {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.group-list-header {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.group-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* group card */
+.my-group-container .group-card {
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.my-group-container .group-card h3 {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.my-group-container .group-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.my-group-container .group-card .group-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; /* ... */
+  max-height: 3em; 
+  line-height: 1.5em;
+  min-height: 3em; /* same height */
+}
+
+

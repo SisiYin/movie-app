@@ -1,0 +1,189 @@
+/* GroupPage container */
+.group-page {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* 浅灰色背景 */
+  border-radius: 10px; /* 圆角边框 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  position: relative; /* 相对定位 */
+}
+
+/* Group details section */
+.group-page .group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.group-page .group-header img {
+  border-radius: 8px; /* 圆角图片 */
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+}
+
+.group-page .group-header-info {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.group-page .group-header h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.group-page .group-header span {
+  display: block;
+  font-size: 0.9em;
+  color: #777; /* 灰色日期文字 */
+}
+
+/* Button styles */
+.group-page .button-container {
+  margin-top: 20px;
+}
+
+.group-page .button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.group-page .button-edit {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: none; /* 无背景 */
+  color: #777; /* 灰色字体 */
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.group-page .button-edit:hover {
+  text-decoration: underline;
+  color: #555;  
+}
+
+.group-page .button-delete {
+  background-color: #f44336; /* 红色 */
+  color: white;
+}
+
+.group-page .button-delete:hover {
+  background-color: #d32f2f; /* 悬停时的红色 */
+}
+
+.group-page .button-leave {
+  background-color: #2196F3; /* 蓝色 */
+  color: white;
+}
+
+.group-page .button-leave:hover {
+  background-color: #1976D2; /* 悬停时的蓝色 */
+}
+
+/* Members list */
+.group-page .members-section {
+  margin-top: 30px;
+}
+
+.group-page .members-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.group-page .member-list {
+  list-style: none;
+  padding: 0;
+}
+
+.group-page .member-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff; /* 白色背景 */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.group-page .member-list li .member-name {
+  font-weight: bold;
+}
+
+.group-page .member-list li .remove-button {
+  padding: 5px 10px;
+  background-color: #f44336; /* 红色 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.group-page .member-list li .remove-button:hover {
+  background-color: #d32f2f; /* 悬停时的红色 */
+}
+
+
+.movie-content-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.username {
+  font-weight: bold;
+  color: #333;
+}
+
+.created-at {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.content-description {
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #555;
+}
+
+/* Tab container and button styles */
+.tab-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+  background-color: #2d06a2;
+  color: white;
+}
+

@@ -78,10 +78,14 @@ const FavoriteMovies= () => {
   },[user.id]);
 
   return (
-    <div >
-    
-      {/* <MovieList movies={movies} /> */}
-      <MyFavoritesList movies={movies} />
+    <div>
+      {movies.length > 0 ? (
+        movies.map((movie) => (
+          <MyFavoritesList key={movie.id} movie={movie} />
+        ))
+      ) : (
+        <p>No favorite movies available.</p>
+      )}
     </div>
   );
 };
