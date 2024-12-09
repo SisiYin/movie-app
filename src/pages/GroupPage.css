@@ -19,10 +19,11 @@
 }
 
 .group-page .group-header img {
-  border-radius: 8px; /* 圆角图片 */
-  width: 150px;
-  height: auto;
-  object-fit: cover;
+  width: 150px; /* 图片宽度固定 */
+  height: 150px; /* 图片高度固定 */
+  border-radius: 8px;
+  object-fit: cover; /* 裁剪图片以适应容器 */
+  aspect-ratio: 1 / 1;
 }
 
 .group-page .group-header-info {

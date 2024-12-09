@@ -30,7 +30,7 @@
 /* 创建按钮样式 */
 .create-button {
   padding: 10px 20px;
-  background-color: lightgray;
+  background-color: #45a049;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -40,7 +40,7 @@
 }
 
 .create-button:hover {
-  background-color: lightgray;
+  background-color: green;
 }
 
 /* 新小组创建输入框 */

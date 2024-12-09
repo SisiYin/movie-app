@@ -45,13 +45,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.starIcon{
-  height: 1rem;
-  width: 1rem;
-  margin-right: 0.5rem;
-  align-items: center;
-  justify-content: center;
-}
 
 .movie-details {
   flex: 1;
@@ -73,11 +66,6 @@ ul {
   padding: 0;
 }
 
-.company-logo {
-  max-height: 30px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
 
 a {
   color: #007bff;
@@ -144,4 +132,62 @@ a:hover {
 
 .close-modal:hover {
   color: red;
+}
+
+.genre-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.genre-tag {
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* tag color */
+.genre-tag {
+  background-color: #888;
+}
+
+/* color designed */
+.genre-28 { background-color: #FF5733; } /* Action */
+.genre-12 { background-color: #33C3FF; } /* Abenteuer */
+.genre-16 { background-color: #a85bc9; } /* Animation */
+.genre-35 { background-color: #FFC300; } /* Komödie */
+.genre-80 { background-color: #C70039; } /* Krimi */
+.genre-99 { background-color: #34495E; } /* Dokumentarfilm */
+.genre-18 { background-color: #27AE60; } /* Drama */
+.genre-10751 { background-color: #F1C40F; } /* Familie */
+.genre-14 { background-color: #8d50a5; } /* Fantasy */
+.genre-36 { background-color: #2C3E50; } /* Historie */
+.genre-27 { background-color: #E74C3C; } /* Horror */
+.genre-10402 { background-color: #1ABC9C; } /* Musik */
+.genre-9648 { background-color: #7F8C8D; } /* Mystery */
+.genre-10749 { background-color: #F39C12; } /* Liebesfilm */
+.genre-878 { background-color: #2980B9; } /* Science Fiction */
+.genre-10770 { background-color: #8E44AD; } /* TV-Film */
+.genre-53 { background-color: #D35400; } /* Thriller */
+.genre-10752 { background-color: #253444; } /* Kriegsfilm */
+.genre-37 { background-color: #bf7e16; } /* Western */
+
+.add-group-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-group-button:hover {
+  background-color: #0056b3;
+  color: #fff;
 }

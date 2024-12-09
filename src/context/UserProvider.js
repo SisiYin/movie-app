@@ -53,9 +53,21 @@ export default function UserProvider({children}) {
     // sessionStorage.removeItem('token') // 
   }
 
+  const deleteAccount = async (id) => {
+    try {
+      const token = sessionStorage.getItem('token');
+      const headers = { headers: { Authorization: `Bearer ${token}` } };
+      const response = await axios.delete(`${url}/user/delete`, { data: { id }, ...headers });
+      return response.data;
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      throw error;
+    }
+  };
+
 
   return (
-    <UserContext.Provider value={{user,setUser,signUp,signIn,signOut}}>
+    <UserContext.Provider value={{user,setUser,signUp,signIn,signOut,deleteAccount}}>
       {children}
     </UserContext.Provider>
   )

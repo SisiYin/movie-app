@@ -9,11 +9,12 @@ import star from "../assets/star.svg"
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
 import GroupSelectionModal from '../components/GroupSelection';
+import RecommendMovies from '../components/RecommendMovies';
 
 const MovieDetail = () => {
   const { movieId } = useParams();
   const { user } = useUser();
-  const [movie, setMovie] = useState('');
+  const [movie, setMovie] = useState({});
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviews,setReviews]=useState([]);
   const [averageRating,setAverageRating] = useState('')
@@ -32,6 +33,7 @@ const MovieDetail = () => {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
+      console.log(data)
       setMovie(data);
     } catch (error) {
       console.error('Failed to fetch movies:', error);
@@ -83,6 +85,9 @@ const MovieDetail = () => {
     setReviews((prevReviews) => [newReview,...prevReviews]);
   };
 
+  console.log(movie)
+  console.log(movie.genres)
+
   useEffect(() => {
     fetchMovies();
     fetchReviews();
@@ -104,15 +109,24 @@ const MovieDetail = () => {
         <img className="movie-poster" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
 
         <div className="movie-details">
+          {/* genres */} 
+          <div className="genre-tags">
+            {movie.genres && movie.genres.map((genre) => (
+              <span key={genre.id} className={`genre-tag genre-${genre.id}`}>
+                {genre.name}
+              </span>
+            ))}
+          </div>
+          
           <p><strong>Overview:</strong> {movie.overview}</p>
           {/* <p><strong>Genres:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p> */}
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
-          <p><img src={star} className='starIcon'></img>{averageRating} / 5.0(votes)</p>
+          
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
-          <FavoriteButton movieId={movieId} />
+          
           <span className="average-rating">  {averageRating} / 5.0</span>
-          <p><strong>Production Companies:</strong></p>
+          <FavoriteButton movieId={movieId} />
           {/* <ul>
             {movie.production_companies.map(company => (
               <li key={company.id}>
@@ -124,7 +138,7 @@ const MovieDetail = () => {
             ))}
           </ul> */}
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
-          <button onClick={() => handleAddToGroup(movie)}>Add to group</button>
+          <button className='add-group-button' onClick={() => handleAddToGroup(movie)}>Add to group</button>
         </div>
       </div>
 
@@ -164,6 +178,10 @@ const MovieDetail = () => {
 
         <MovieReviewsList reviews={reviews} />
       </div>
+
+      {/* recommendation */}
+      {movie.genres&&(<RecommendMovies genres={movie.genres} />)}
+
     </div>
   );
 };

@@ -9,7 +9,13 @@ password varchar(255) not null);
 
 ALTER TABLE account ADD COLUMN share_url VARCHAR(255) UNIQUE;
 ALTER TABLE account ADD COLUMN is_public BOOLEAN DEFAULT TRUE;
+ALTER TABLE account ADD COLUMN avatar BYTEA 
 
+CREATE TYPE gender_type AS ENUM ('Male', 'Female', 'Other');
+ALTER TABLE account
+ADD COLUMN country VARCHAR(100) DEFAULT NULL,
+ADD COLUMN gender gender_type DEFAULT NULL,
+ADD COLUMN birthday DATE DEFAULT NULL;
 
 
 drop table if exists reviews;
@@ -39,7 +45,7 @@ CREATE TABLE groups (
   description TEXT 
 );
 ALTER TABLE groups
-ADD COLUMN picture VARCHAR(255);
+ADD COLUMN image BYTEA;
 
 CREATE TABLE groupmembers (
   id SERIAL PRIMARY KEY,

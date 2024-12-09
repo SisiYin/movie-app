@@ -19,7 +19,7 @@ const MovieCarouselList = ({ type }) => {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      setMovies(data.results.slice(0, 10) || []); // Get only the first three movies
+      setMovies(data.results.slice(0, 10) || []); // Get only the first ten movies
     } catch (error) {
       console.error('Failed to fetch movies:', error);
     }

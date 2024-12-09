@@ -8,7 +8,6 @@ import GroupEdit from '../components/GroupEdit'
 import './GroupPage.css';
 import MyFavoritesList from '../components/MyFavoritesList';
 import ShowtimeList from '../components/ShowtimeList';
-//import DisplayCustomData from '../components/DisplayCustomData';
 
 const url = process.env.REACT_APP_API_URL
 
@@ -16,6 +15,7 @@ const GroupPage = () => {
   const { groupId } = useParams();
   const { user } = useUser();
   const [group, setGroup] = useState('');
+  const [base64Image,setBase64Image] = useState('')
   const [members, setMembers] = useState([]);
   const [groupContent, setGroupContent] = useState([]);
   const [movieContent, setMovieContent] = useState([]);
@@ -30,6 +30,10 @@ const GroupPage = () => {
     fetchGroupContent();
     fetchShowtimeContent();
   }, [groupId]);
+
+  useEffect(() => {
+    fetchGroupImage();
+  }, []);
 
   useEffect(() => {
     fetchMovieDetails();
@@ -51,6 +55,39 @@ const GroupPage = () => {
       alert('Failed to fetch group details.');
     }
   };
+
+  const fetchGroupImage = async () => {
+    try {
+      const response = await axios.get(`${url}/group/${groupId}/image`);
+      console.log(response.data.base64Image)
+      setBase64Image(response.data.base64Image);
+    } catch (error) {
+      console.error('Error fetching group image:', error);
+    }
+  };
+
+  //upload group image
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('groupId', group.id);
+
+    try {
+      await axios.post(`${url}/group/${groupId}/uploadimage`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      fetchGroupImage()
+      alert('Image uploaded successfully!'); 
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Failed to upload image.');
+    }
+  };
+
+  
 
   //get content from customs
   const fetchGroupContent = async () => {
@@ -149,17 +186,32 @@ const GroupPage = () => {
 
   return (
     <div className="group-page">
+      <h1>{group.name}</h1>
       <div className="group-header">
-        <img
-          src={group.image_url || 'default_image.png'}
-          alt={group.name}
-          className="group-image"
-        />
+
+        {/* upload picture */}
+        <label htmlFor="image-upload">
+          <img
+            src={base64Image}
+            alt={group.name}
+            className="group-image"
+            style={{ cursor: 'pointer' }}
+          />
+        </label>
+        {isOwner&&(<input
+          type="file"
+          name="image"
+          id="image-upload"
+          style={{ display: 'none' }}
+          accept="image/*"
+          onChange={handleImageUpload}
+        />)}
+        {/* group info */}
         <div className="group-header-info">
-          <h1>{group.name}</h1>
+          <p>Group ID: {group.id}</p>
           <p>Description: {group.description}</p>
-          <h3>Created by: {group.owner_name}</h3>
-          <span>created at: {dayjs(group.created_at).format('YYYY-MM-DD')}</span>
+          <span>Created by: {group.owner_name}</span>
+          <span>Created at: {dayjs(group.created_at).format('YYYY-MM-DD')}</span>
         </div>
       </div>
 
@@ -269,7 +321,7 @@ const GroupPage = () => {
 
       {activeTab === 'showtime' && (
         <div>
-        <h2>Movies in Group</h2>
+        <h2>Showtimes in Group</h2>
         <ul>
           {showtimeContent.length > 0 ? (
             showtimeContent.map((showtime) => (
@@ -287,62 +339,6 @@ const GroupPage = () => {
 
 export default GroupPage;
 
-// import React, { useState, useEffect } from 'react';
-// import GroupMembersList from '../components/GroupMembersList';
-// // import JoinRequests from '../components/JoinRequests';
-// // import AddInformation from '../components/AddInformation';
-// import axios from 'axios';
 
-// const url = process.env.REACT_APP_API_URL
-
-// function GroupPage({ groupId }) {
-//   const [group, setGroup] = useState({});
-//   const [members, setMembers] = useState([]);
-//   const [requests, setRequests] = useState([]);
-
-//   useEffect(() => {
-//     axios.get(`${url}/group/${groupId}`).then((res) => setGroup(res.data));
-//     //axios.get(`/groups/${groupId}/members`).then((res) => setMembers(res.data));
-//     // axios.get(`/groups/${groupId}/join`).then((res) => setRequests(res.data));
-//   }, [groupId]);
-
-//   const handleRemove = (memberId) => {
-//     // axios.delete(`${url}/group/${groupId}/members/${memberId}`).then(() =>
-//     //   setMembers(members.filter((member) => member.id !== memberId))
-//     // );
-//   };
-
-//   const handleLeave = () => {
-//     //axios.delete(`/groups/${groupId}/members/self`).then(() => alert('You left the group!'));
-//   };
-
-//   // const handleApprove = (requestId) => {
-//   //   axios.post(`/groups/${groupId}/manage/${requestId}`, { action: 'approve' }).then(() =>
-//   //     setRequests(requests.filter((req) => req.id !== requestId))
-//   //   );
-//   // };
-
-//   // const handleReject = (requestId) => {
-//   //   axios.post(`/groups/${groupId}/manage/${requestId}`, { action: 'reject' }).then(() =>
-//   //     setRequests(requests.filter((req) => req.id !== requestId))
-//   //   );
-//   // };
-
-//   // const handleAddInfo = (info) => {
-//   //   axios.post(`/groups/${groupId}/information`, info).then(() => alert('Information added!'));
-//   // };
-
-//   return (
-//     <div>
-//       <h2>{group.name}</h2>
-//       <p>Owner: {group.owner}</p>
-//       <GroupMembersList members={members} onRemove={handleRemove} onLeave={handleLeave} />
-//       {/* <JoinRequests requests={requests} onApprove={handleApprove} onReject={handleReject} />
-//       <AddInformation onAdd={handleAddInfo} /> */}
-//     </div>
-//   );
-// }
-
-// export default GroupPage;
 
 

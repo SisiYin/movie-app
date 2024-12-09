@@ -1,13 +1,16 @@
 import {pool} from '../helpers/db.js'
 import crypto from 'crypto';
 
-
 export const insertUser = async (email, hashedPassword) => {
   return await pool.query('insert into account (email,password) values ($1,$2) returning *',[email,hashedPassword])
 }
 
 export const selectUserByEmail = async (email) => {
   return await pool.query('select * from account where email=$1',[email])
+}
+
+export const selectUserById = async (id) =>{
+  return await pool.query('select * from account where id=$1',[id])
 }
 
 export const selectReviewsByUser = async (accountId) => {
@@ -55,5 +58,47 @@ export const toggleShareVisibility = async (accountId, isPublic) => {
 export const selectAllPublicShares = async () => {
   return await pool.query(
     `SELECT email, share_url FROM account WHERE is_public = true AND share_url IS NOT NULL ORDER BY id`
+  );
+};
+
+const deleteReviewsByAccountId = async (id) => {
+  return await pool.query('DELETE FROM reviews WHERE account_id=$1', [id]);
+};
+
+export const deleteUserById = async (id) => {
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    await deleteReviewsByAccountId(id); 
+    const result = await client.query('DELETE FROM account WHERE id=$1', [id]); 
+    await client.query('COMMIT');
+    return result;
+  } catch (error) {
+    await client.query('ROLLBACK');
+    throw error;
+  } finally {
+    client.release();
+  }
+};
+
+export const updateUserAvatar = async(fileBuffer, accountId) =>{
+  return await pool.query(
+    `UPDATE account SET avatar = $1 WHERE id = $2`,
+    [fileBuffer, accountId]
+  );
+}
+
+export const selectAccountAvatarById = async(id) => {
+  return await pool.query(
+    'SELECT avatar FROM account WHERE id = $1', [id]
+  );
+}
+
+export const updateAccountInfo = async (username, country,gender,birthday,accountId) => {
+  return await pool.query(
+    `UPDATE account
+     SET username = $1, country = $2, gender=$3,birthday=$4 
+     WHERE id = $5`,
+    [username, country,gender,birthday,accountId]
   );
 };

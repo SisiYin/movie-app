@@ -1,0 +1,76 @@
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+}
+
+.container img {
+  width: 150px; /* 图片宽度固定 */
+  height: 150px; /* 图片高度固定 */
+  border-radius: 8px;
+  object-fit: cover; /* 裁剪图片以适应容器 */
+  aspect-ratio: 1 / 1;
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.form-group input.read-only {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.button-group button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

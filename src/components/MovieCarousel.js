@@ -52,13 +52,6 @@ const MovieCarousel = ({ movies }) => {
           <Link to="/showtimes"> &gt;&gt; </Link>
         </div>
       </div>
-
-      {/* Category Buttons */}
-      <div className="categories">
-        {['Action', 'Comedy', 'Drama', 'Horror', 'Romance'].map((category) => (
-          <button key={category} className="category-button">{category}</button>
-        ))}
-      </div>
     </div>
   );
 };

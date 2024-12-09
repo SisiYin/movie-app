@@ -137,7 +137,7 @@ const ShowTimesFinnkino = () => {
           movieTitle: showtime.title,
           showTime: showtime.showTime,
           theatre: showtime.theatre,
-          description: `${showtime.title} will be shown on ${dayjs(showtime.showTime).format('YYYY-MM-DD HH:mm:ss')} at ${showtime.theatre} `
+          description: `"${showtime.title}" will be shown on ${dayjs(showtime.showTime).format('YYYY-MM-DD HH:mm:ss')} at ${showtime.theatre} `
         })
       );
 

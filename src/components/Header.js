@@ -19,8 +19,9 @@ const filters = [
 
 const Header = () => {
   // const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-  const { user, signOut } = useContext(UserContext);
+  const { user,deleteAccount,signOut } = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   // const toggleFilterMenu = () => {
   //   setIsFilterMenuOpen(!isFilterMenuOpen);
   // };
@@ -39,9 +40,17 @@ const Header = () => {
     navigate(path);
   };
 
-  const handleDeleteAccount = () => {
-    // deleteAccount();
-    navigate("/signin"); 
+  const handleDeleteAccount = async() => {
+    try {
+      await deleteAccount(user.id);
+      setShowConfirmation(false);
+      signOut();
+      navigate("/signin"); 
+
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      alert('Failed to delete account. Please try again.');
+    }
   };
 
   return (
@@ -88,29 +97,33 @@ const Header = () => {
           {isDropdownOpen && (
             <div className="dropdown-menu">
               <div onClick={() => handleNavigate(`/user/${user.id}/account`)} className="dropdown-item">My Account</div>
+              {/* <div onClick={() => handleNavigate(`/profile`)} className="dropdown-item">My Account</div> */}
               <div onClick={() => handleNavigate(`/user/${user.id}/favorite`)} className="dropdown-item">My Favorites</div>
               <div onClick={() => handleNavigate(`/user/${user.id}/review`)} className="dropdown-item">My Reviews</div>
               <div onClick={() => handleNavigate(`/user/${user.id}/group`)} className="dropdown-item">My Groups</div>
               {/*<div onClick={() => handleNavigate(`/user/${user.id}/settings`)} className="dropdown-item">Account settings</div> */}
-              <div onClick={handleDeleteAccount} className="dropdown-item">Delete Account</div>
+              <div onClick={()=>{setShowConfirmation(true)}} className="dropdown-item">Delete Account</div>
             </div>
           )}
         </div>
-
-      {/* Filter tags (below Search Bar on larger screens, dropdown menu on smaller screens) */}
-      {/* <div className="filter-container">
-        <div className="filter-tags-desktop">
-          <FilterTags filters={filters}/>
-        </div>
-        <button className="filter-menu-toggle" onClick={toggleFilterMenu}>
-          ☰
-        </button>
-        {isFilterMenuOpen && (
-          <div className="filter-menu">
-            <FilterTags filters={filters}/>
-          </div>
-        )}*/}
       </div> 
+      {/* 删除账户确认对话框 */}
+      {showConfirmation && (
+        <div className="confirmation-dialog">
+          <div className="confirmation-content">
+            <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+            <div className="confirmation-buttons">
+              <button className="confirm-button" onClick={handleDeleteAccount}>
+                Yes, Delete
+              </button>
+              <button className="cancel-button" onClick={() => setShowConfirmation(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
     </header>
   );
 };

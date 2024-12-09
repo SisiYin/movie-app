@@ -1,7 +1,8 @@
 import { hash, compare } from 'bcrypt'
 import jwt from 'jsonwebtoken'
 const {sign} = jwt
-import { insertUser, selectUserByEmail,selectReviewsByUser,createShareUrl,selectShareInfoByUser,selectShareInfoByUrl,toggleShareVisibility,selectFavoritesByUser,selectAllPublicShares} from '../models/User.js'
+import multer from 'multer';
+import { insertUser, selectUserByEmail,selectReviewsByUser,createShareUrl,selectShareInfoByUser,selectShareInfoByUrl,toggleShareVisibility,selectFavoritesByUser,selectAllPublicShares,deleteUserById,selectUserById,selectAccountAvatarById,updateUserAvatar,updateAccountInfo} from '../models/User.js'
 import { ApiError } from '../helpers/ApiError.js'
 import dotenv from 'dotenv';
 
@@ -46,6 +47,83 @@ const postLogin = async(req,res,next) => {
     return next(error)
   }
 }
+
+const getAccountInfo = async(req, res, next)=>{
+  const { accountId } = req.params;
+  try {
+    const result = await selectUserById(accountId);
+    res.status(200).json(result.rows);  
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    next(error);
+  }
+}
+
+const editAccountInfo = async (req, res,next) => {
+  const { accountId } = req.params;
+  const { username,country,gender,birthday } = req.body;
+
+  try {
+    // update the group details
+    await updateAccountInfo(username,country,gender,birthday,accountId);
+
+    res.status(200).json({ message: 'Account details updated successfully' });
+  } catch (error) {
+    console.error('Error updating account details:', error);
+    next(error);
+  }
+};
+
+//store
+const upload = multer({ storage: multer.memoryStorage() });
+// Upload group image
+const uploadUserAvatar = async (req, res) => {
+  const { accountId } = req.params;
+  const fileBuffer = req.file.buffer; 
+
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+
+  try {
+    await updateUserAvatar(fileBuffer, accountId)
+    const base64Image = `data:image/jpeg;base64,${fileBuffer.toString('base64')}`;
+    res.status(200).json(base64Image);
+  } catch (error) {
+    console.error('Error updating user avatar:', error);
+    res.status(500).json({ error: 'Failed to update user avatar' });
+  }
+};
+
+const getUserAvart = async (req, res) => {
+  const { accountId } = req.params;
+
+  try {
+    const result = await selectAccountAvatarById(accountId);
+    if (result.rows.length > 0 && result.rows[0].avatar) {
+      const imageBuffer = result.rows[0].avatar;
+      const base64Image = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+      res.status(200).json({ base64Image });
+    } else {
+      res.status(404).send('Image not found.');
+    }
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    res.status(500).send('Failed to fetch image.');
+  }
+};
+
+const deleteUser = async (req, res, next) => {
+  try {
+    if (!req.body.id) return next(new ApiError('Invalid ID provided for deletion', 400));
+    const userFromDb = await deleteUserById(req.body.id);
+    if (userFromDb.rowCount === 0)
+      return next(new ApiError('User not found or already deleted', 404));
+    return res.status(200).json({ message: 'User account successfully deleted' });
+  } catch (error) {
+    return next(error);
+  }
+};
 
 const getReviewsByUser = async (req, res, next) => {
   const { accountId } = req.params;
@@ -162,4 +240,4 @@ const getAllPublicShares = async (req, res) => {
 };
 
 
-export {postRegistration, postLogin,getReviewsByUser,getShareInfo,putShareVisibility,getFavoritesByShareUrl,getAllPublicShares}
+export {postRegistration, postLogin,getReviewsByUser,getShareInfo,putShareVisibility,getFavoritesByShareUrl,getAllPublicShares,deleteUser,getAccountInfo,getUserAvart,uploadUserAvatar,upload,editAccountInfo}

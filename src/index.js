@@ -27,6 +27,7 @@ import MyReviewsPage from './pages/MyReviewsPage';
 import MyGroupPage from './pages/MyGroupPage';
 import AllPublicShares from './pages/AllPublicShares';
 import GroupPage from './pages/GroupPage';
+import Profile from './pages/Profile';
 
 
 

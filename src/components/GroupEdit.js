@@ -7,26 +7,19 @@ const url = process.env.REACT_APP_API_URL;
 const GroupEdit = ({ group, onClose, fetchGroupDetails }) => {
   const [name, setName] = useState(group.name);
   const [description, setDescription] = useState(group.description);
-  const [image, setImage] = useState(null);
+  
 
   const handleSave = async () => {
     try {
-      // 保存组名称和简介
+      // save group name and description
       await axios.patch(`${url}/group/${group.id}`, {
         name,
         description,
       });
 
-      // 如果有新图片，上传图片
-      if (image) {
-        const formData = new FormData();
-        formData.append('image', image);
-        await axios.post(`${url}/group/${group.id}/upload`, formData);
-      }
-
       alert('Group updated successfully!');
-      fetchGroupDetails(); // 刷新群组详情
-      onClose(); // 关闭模态框
+      fetchGroupDetails();  
+      onClose(); 
     } catch (error) {
       console.error('Failed to update group:', error);
       alert('Failed to update group details.');
