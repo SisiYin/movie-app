@@ -100,7 +100,6 @@ const GroupPage = () => {
       alert('Failed to fetch group content.');
     }
   };
-  console.log(groupContent)
    // fecth datail data by contentId 
   const fetchMovieDetails = async () => {
     try {

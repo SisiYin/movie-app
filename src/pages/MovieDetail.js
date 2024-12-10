@@ -96,9 +96,7 @@ const MovieDetail = () => {
 
   return (
     <div className="movie-detail">
-      <div className="movie-backdrop" 
-      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
-      >
+      <div className="movie-backdrop" >
         <div className="movie-title">
           <h1>{movie.title}</h1>
           <p className="movie-tagline">{movie.tagline}</p>

@@ -29,6 +29,14 @@ CREATE TABLE reviews (
   rating DECIMAL(2, 1),
   time TIMESTAMP NOT NULL
 );
+ALTER TABLE reviews DROP COLUMN email;
+ALTER TABLE reviews DROP CONSTRAINT reviews_account_id_fkey;
+ALTER TABLE reviews
+ADD CONSTRAINT reviews_account_id_fkey
+FOREIGN KEY (account_id)
+REFERENCES account (id)
+ON DELETE CASCADE;
+
 
 CREATE TABLE favorites (
   id SERIAL PRIMARY KEY,

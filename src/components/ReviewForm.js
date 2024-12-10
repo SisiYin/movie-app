@@ -31,7 +31,6 @@ const ReviewForm = ({movieId,addReview,closeForm }) => {
           body: JSON.stringify({
             movieId: movieId,
             accountId: user.id,
-            email: user.email,
             rating: rating,
             comment: newComment,
             time: new Date().toISOString(),

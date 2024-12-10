@@ -1,7 +1,7 @@
 import {pool} from '../helpers/db.js'
 import multer from 'multer';
 
-import { getAllGroups,addGroup,isGroupOwner,isGroupMember,addMember,approveMember,selectGroupMembers, rejectMember, selectGroupById,selectJoinRequests, deleteGroup,deleteMember,updateGroupInfo,selectUserGroups,insertContentToGroup,selectContentByGroup,insertShowtimeToGroup,selectShowtimeContentByGroup,updateGroupImage,selectGroupImage } from '../models/Group.js';
+import { getAllGroups,addGroup,isGroupOwner,isGroupMember,insertJoinRequest,addMember,approveMember,selectGroupMembers, rejectMember, selectGroupById,selectJoinRequests, deleteGroup,deleteMember,updateGroupInfo,selectUserGroups,insertContentToGroup,selectContentByGroup,insertShowtimeToGroup,selectShowtimeContentByGroup,updateGroupImage,selectGroupImage } from '../models/Group.js';
 
 
 const getGroups = async (req, res) => {
@@ -80,11 +80,7 @@ const requestToJoin = async (req, res) => {
     //   return res.status(400).json({ error: 'User is already a member of this group' });
     // }
 
-    await pool.query(
-      `INSERT INTO groupmembers (group_id, account_id) VALUES ($1, $2) ON CONFLICT DO NOTHING`,
-      [groupId, accountId]
-    );
-
+    await insertJoinRequest(groupId,accountId)
     res.status(201).json({ message: 'Join request sent' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to send join request' });
@@ -116,13 +112,11 @@ const requestToJoin = async (req, res) => {
 
 const getGroupDetails = async (req, res) => {
   const { groupId } = req.params;
-
   try {
    
-    // const groupMember = await isGroupMember()
+    // const groupMember = await isGroupMember(groupId,userId)
 
     // if (!groupMember) {
-    //   // 如果当前用户不是该群组的成员，返回403错误
     //   return res.status(403).json({ error: 'You are not a member of this group' });
     // }
 
